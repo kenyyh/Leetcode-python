@@ -1,0 +1,65 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        
+        
+        '''
+        以第一個字元作為初始點開始掃描，一次掃秒一個字元，並丟進一個集合或字典裡，判斷如果此字典裡
+        沒有此字元，則沒有重複，繼續往下，若此字元在集合或字典裡，則代表重複了，從重複的字元當作新的
+        初始點，然後"依據已經掃描到的點"繼續往下判斷，因為已知新的初始點到我們掃描到點的點中間字元
+        沒有重複，不須重複判斷
+        '''
+        
+        
+        # dict 字典寫法
+        dct = {}
+        max_so_far = curr_max = start = 0
+        for index, i in enumerate(s):
+            if i in dct and dct[i] >= start:
+                max_so_far = max(max_so_far, curr_max)
+                curr_max = index - dct[i]
+                start = dct[i] + 1
+            else:
+                curr_max += 1
+            dct[i] = index
+        return max(max_so_far, curr_max)
+    
+    
+        # set 集合寫法
+        '''
+        n = len(s)
+        ans = 0
+        i = 0
+        j = 0
+        set_tmp = set()
+        
+        while (i < n and j < n):
+            if(s[j] not in set_tmp):
+                set_tmp.add(s[j])
+                j +=1
+                ans = max(ans, j - i)
+            else:
+                set_tmp.remove(s[i])
+                i +=1
+        return ans
+        '''       
+        
+        
+        # 過不了的寫法，效率差，TLE
+        '''
+        tmp = 0
+        
+        for i in range(len(s) - 1):
+            for j in range(i + tmp, len(s)):
+                tmp_string = s[i:j+1] 
+                if len(tmp_string) == len(set(tmp_string)):
+                    if len(tmp_string) > tmp:
+                        tmp = len(tmp_string) 
+                else:
+                    break
+            
+        return tmp'''
+    
