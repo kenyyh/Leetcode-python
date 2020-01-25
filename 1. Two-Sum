@@ -6,13 +6,13 @@ class Solution(object):
         :rtype: List[int]
         """
         
-        # 字串處理
+        # list 查詢
         '''for i in range(len(nums)):
             tmp  = target - nums[i]
             if  tmp in nums and nums.index(tmp) != i:
                 return i, nums.index(tmp)'''
             
-        # 轉換成字典
+        # dict 查詢
         hashtable = {value: index for index, value in enumerate(nums)}
 
         for index, value in enumerate(nums):
@@ -20,3 +20,8 @@ class Solution(object):
             hash_index = hashtable.get(result)
             if hash_index and hash_index != index:
                 return [index, hash_index]
+        
+        '''
+        執行效率
+        dict >> list > 兩層迴圈
+        '''
