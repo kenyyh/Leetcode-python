@@ -7,7 +7,7 @@
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         
-        
+        # 優化寫法
         sumval = 0
         root = curr = ListNode(0)
         
@@ -23,6 +23,11 @@ class Solution:
         return root.next
             
         
+        
+        
+        
+        
+        # 練習嘗試
         '''suml1 = 0
         count = 0
         while True:
