@@ -1,0 +1,22 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
+        # 字串處理
+        '''for i in range(len(nums)):
+            tmp  = target - nums[i]
+            if  tmp in nums and nums.index(tmp) != i:
+                return i, nums.index(tmp)'''
+            
+        # 轉換成字典
+        hashtable = {value: index for index, value in enumerate(nums)}
+
+        for index, value in enumerate(nums):
+            result = target - value
+            hash_index = hashtable.get(result)
+            if hash_index and hash_index != index:
+                return [index, hash_index]
