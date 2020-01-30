@@ -1,0 +1,37 @@
+class Solution:
+    def reverse(self, x: int) -> int:
+        
+        if x > 0 :
+            x = int(str(x)[::-1])
+        else:
+            x = -1 * int(str(-1 * x)[::-1])
+        
+        if x >= 2147483647 or x <= -2147483648:
+            return 0
+        else:
+            return x
+        
+        
+        
+        # 初步寫法
+        '''if x > 0:
+            x = list(str(x))
+            x = x[-1::-1]
+            x = ''.join(x)
+            x = int(x)
+            
+            if x > 2147483647 or x < -2147483648:
+                return 0 
+            
+            return x
+        else:
+            x = abs(x)
+            x = list(str(x))
+            x = x[-1::-1]
+            x = ''.join(x)
+            x = int(x)
+            
+            if x > 2147483647 or x < -2147483648:
+                return 0 
+            
+            return x * (-1)'''
