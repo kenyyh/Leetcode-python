@@ -1,0 +1,39 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+
+        
+        #3SUM
+        #給一個list 找出list中任意三個加起來等於 0 的所有組合 (由小到大排不重複
+        
+        # 將拿到的nums進行排列
+        nums.sort()
+        ans = []
+        i = 0
+        while i < len(nums) - 2:
+            
+            # 從邊往右 一次固定一個數字 x ，找出這個數右邊的組合 y z，使加起來等於 0
+            num = nums[i]
+            
+            # 當數字 x > 0 停止 再往右都是正數不可能加起來等於 0
+            if num > 0 : break
+            
+            # 找出 x 右邊一格的數字index y 跟最右邊的數字index z
+            left, right = i + 1, len(nums) - 1
+            
+            
+            # 判斷當 x + y + z = 0 時，為解，且此時只有一組合 x, y, z 無法找到 x, y ? 或是 x, ? ,z 的組合，因此要往右往左縮一格
+            # 若  x + y + z > 0 則是 y + z 值太大，因此將 z 往左一格找，縮小 y + z 的值  
+            # 若  x + y + z < 0 則是 y + z 值太小，因此將 y 往右一格找，增加 y + z 的值  
+            while left != right:
+                numleft, numright = nums[left], nums[right]
+                total = num + numleft + numright
+                
+                if total == 0 : ans += [num, numleft, numright],
+                if total >= 0 :
+                    while left != right and nums[right] == numright: right -= 1
+                if total <= 0 :
+                    while left != right and nums[left] == numleft: left += 1
+            while i < len(nums) -2 and nums[i] == num : i += 1
+            
+        
+        return ans
